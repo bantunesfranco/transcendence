@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="tab">
+    <form [formGroup]="codeForm" (ngSubmit)="sendCode()">
+      <h2>Please input 2FA Code</h2>
+      <div class="code-container" id="code-container">
+        <input [OnlyNumber]=true id="one" formControlName="one" maxlength="1" class="tfa-code" type="text" name="2fa" autocomplete="off"/>
+        <input [OnlyNumber]=true id="two" formControlName="two" maxlength="1" class="tfa-code" type="text" name="2fa" autocomplete="off"/>
+        <input [OnlyNumber]=true id="three" formControlName="three" maxlength="1" class="tfa-code" type="text" name="2fa" autocomplete="off" style="margin-right: 1.4rem">
+        <input [OnlyNumber]=true id="four" formControlName="four" maxlength="1" class="tfa-code" type="text" name="2fa" autocomplete="off"/>
+        <input [OnlyNumber]=true id="five" formControlName="five" maxlength="1" class="tfa-code" type="text" name="2fa" autocomplete="off"/>
+        <input [OnlyNumber]=true id="six" formControlName="six" maxlength="1" class="tfa-code" type="text" name="2fa" autocomplete="off"/>
+      </div>
+      <button mat-raised-button class="mat-raised-button" color="primary" type="submit">Submit</button>
+    </form>
+  </div>
+</div>

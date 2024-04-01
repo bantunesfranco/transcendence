@@ -1,0 +1,57 @@
+<h2>Friends & Blocked Users</h2>
+<table class="section-table">
+  <thead>
+    <tr>
+      <th>Friend List</th>
+      <th>Block List</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        <ul>
+          @if (friends) {
+          <li>
+            <ul>
+              @for (friend of friends; track friend) {
+              <li>
+                <a [routerLink]="['/profile', friend.id]">{{
+                  friend.intraName
+                }}</a>
+                | {{ friend.status }}
+              </li>
+              } @empty {
+              <li>You have no friends.</li>
+              }
+            </ul>
+          </li>
+          } @else {
+          <li>N/A</li>
+          }
+        </ul>
+      </td>
+
+      <td>
+        <ul>
+          @if (foes) {
+          <li>
+            <ul>
+              @for (foe of foes; track foe) {
+              <li>
+                <a [routerLink]="['/profile', foe.id]">{{ foe.intraName }}</a>
+                | {{ foe.status }}
+              </li>
+              } @empty {
+              <li>You have no foes.</li>
+              }
+            </ul>
+          </li>
+          } @else {
+          <li>N/A</li>
+          }
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,12 @@
+<!-- <h1>Welcome to the CRUDscendence zone!</h1> -->
+
+<a
+  mat-raised-button
+  color="primary"
+  *ngIf="router.url === '/'"
+  href="/api/auth/login"
+>
+  Login
+</a>
+
+<router-outlet></router-outlet>

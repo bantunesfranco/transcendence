@@ -1,0 +1,11 @@
+.chat-options {
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  padding: 10px;
+}
+
+.create-chat-button {
+  margin-bottom: 20px;
+  margin-left: 20px;
+}

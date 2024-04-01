@@ -1,0 +1,7 @@
+{
+  "/login": {
+    "target": "https://backend:3000/auth/login",
+    "secure": true,
+    "changeOrigin": true
+  }
+}

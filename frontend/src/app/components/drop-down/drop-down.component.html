@@ -1,0 +1,10 @@
+<form>
+  <mat-form-field>
+    <mat-label>Select theme</mat-label>
+    <mat-select [(ngModel)]="selectedValue" name="silence-error" (selectionChange)="onSelectionChange($event)" #select>
+      @for (theme of themes; track theme) {
+        <mat-option [value]="theme">{{theme.viewValue}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+</form>

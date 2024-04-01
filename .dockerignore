@@ -1,0 +1,6 @@
+.git
+.vscode
+*.log
+.angular
+node_modules
+dist

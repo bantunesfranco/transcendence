@@ -1,0 +1,65 @@
+<app-navigation> </app-navigation>
+@if (users) {
+<div class="section-container">
+  <div class="section-box">
+    <h2>User List</h2>
+    <table class="section-table">
+      <tr>
+        <th>Avatar</th>
+        <th>ID</th>
+        <!-- <th>Intra Name</th> -->
+        <th>User Name</th>
+        <th>Status</th>
+      </tr>
+      @for (user of users; track user) {
+      <tr>
+        @if (user.id !== currentUserId) {
+        <td>
+          <img src="{{ user.avatar }}" alt="User Avatar" class="avatar-list" />
+        </td>
+        <td>
+          <p>{{ user.id }}</p>
+        </td>
+        @if (user.userName.length < 3) {
+        <td>
+          <a [routerLink]="['/profile', user.id]">{{ user.intraName }}</a>
+        </td>
+        } @else {
+        <td>
+          <a [routerLink]="['/profile', user.id]">{{ user.userName }}</a>
+        </td>
+        }
+        <td>
+          <p>{{ user.status }}</p>
+        </td>
+        <td>
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="addFriend(user)"
+            [disabled]="isUserInFriendList(user)"
+          >
+            Add
+          </button>
+        </td>
+        <td>
+          <button
+            mat-raised-button
+            color="warn"
+            (click)="blockUser(user)"
+            [disabled]="isUserInBlockList(user)"
+          >
+            Block
+          </button>
+        </td>
+        }
+      </tr>
+      } @empty {
+      <tr>
+        <td colspan="7">No users found.</td>
+      </tr>
+      }
+    </table>
+  </div>
+</div>
+}

@@ -1,0 +1,14 @@
+<mat-chip-listbox aria-label="Status" [disabled]="readOnlyMode">
+  <mat-chip-option
+    color="primary"
+    [selected]="user.status === 'online'"
+    (click)="setStatus(0)"
+    >Online</mat-chip-option
+  >
+  <mat-chip-option
+    color="warn"
+    [selected]="user.status !== 'online'"
+    (click)="setStatus(1)"
+    >Offline</mat-chip-option
+  >
+</mat-chip-listbox>

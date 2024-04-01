@@ -1,0 +1,154 @@
+/* Apply background to the entire page */
+body {
+  background-color: #f0f0f0;
+}
+
+/* Main section container */
+.section-container {
+  display: flex;
+  height: 95%;
+}
+
+/* Chatlist column */
+.chatlist-column {
+  flex: 1;
+  padding: 20px;
+  background-color: #ffffff;
+  margin-right: 15px;
+  border-radius: 8px;
+}
+
+/* Chatlist header */
+.chatlist-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Create chat button */
+.create-chat-button {
+  background-color: #007bff;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+/* Chatlist */
+.chatlist {
+  overflow-y: auto;
+  max-height: 90%; /* Adjust as needed */
+}
+
+/* Chat column */
+.chat-column {
+  flex: 1;
+  padding: 20px;
+  background-color: #ffffff;
+  overflow-y: auto; /* Enable vertical scrolling for messages */
+  border-radius: 8px;
+}
+
+.chat-body {
+  overflow-y: auto; /* Enable vertical scrolling for chat body */
+  /* max-height: 80%;  */
+  max-height: calc(100vh - 200px); /* Adjust max height as needed */
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.button-panel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Admin controls */
+.admin-controls {
+  /* flex-grow: 1; */
+  display: flex;
+  gap: 10px;
+}
+
+.admin-controls button {
+  margin-top: 10px;
+}
+
+/* Select user field */
+.select-user-field {
+  width: 200px; /* Adjust as needed */
+}
+
+/* Chat header */
+.chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* gap: 490px; */
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+/* Message */
+.message {
+  margin-bottom: 20px;
+}
+
+/* Message header */
+.message-header {
+  display: flex;
+  align-items: center;
+}
+
+/* Avatar */
+.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+/* Sender info */
+.sender-info {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Sender name */
+.sender-name {
+  font-weight: bold;
+}
+
+/* Sent date */
+.sent-date {
+  color: #777777;
+}
+
+/* Message content */
+.message-content {
+  margin-top: 5px;
+}
+
+/* Message input */
+.message-input {
+  display: flex;
+  align-items: center;
+}
+
+/* Adjust input width */
+input {
+  flex: 1;
+  margin-right: 10px;
+}
+
+/* Set form width to 100% */
+.message-input form {
+  width: 100%;
+}

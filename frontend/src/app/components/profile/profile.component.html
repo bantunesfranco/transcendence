@@ -1,0 +1,27 @@
+<app-navigation> </app-navigation>
+
+@if (user) {
+<div class="section-container">
+  <!-- User Details -->
+  <div class="section-box">
+    @if (me) {
+    <app-user-details [user]="user" [readOnlyMode]="false"></app-user-details>
+    } @else {
+    <app-user-details [user]="user" [readOnlyMode]="true"></app-user-details>
+    }
+  </div>
+
+  <!-- Friends & Blocked Users -->
+  <div class="section-box">
+    <app-user-friends-foes
+      [friends]="friends"
+      [foes]="foes"
+    ></app-user-friends-foes>
+  </div>
+
+  <!-- Statistics -->
+  <div class="section-box">
+    <app-user-statistics [stats]="user.statistics"></app-user-statistics>
+  </div>
+</div>
+}

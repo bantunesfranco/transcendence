@@ -1,0 +1,28 @@
+<app-navigation></app-navigation>
+
+<h2>Good Afternoon Gamers!</h2>
+
+<p *ngIf="state == stateEnum.queueing">Finding a match...</p>
+<p *ngIf="state == stateEnum.awaiting">Waiting for other player...</p>
+
+<button
+  mat-raised-button
+  color="primary"
+  (click)="onStart()"
+  *ngIf="state == stateEnum.ready"
+>
+  Start
+</button>
+<button
+  mat-raised-button
+  color="primary"
+  (click)="onReconnect()"
+  *ngIf="state == stateEnum.disconnected"
+>
+  Reconnect
+</button>
+
+<app-drop-down (selectionChange)="menuCallBack($event)" #menu></app-drop-down>
+
+<canvas #score></canvas>
+<canvas #canvas></canvas>

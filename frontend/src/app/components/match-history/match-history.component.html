@@ -1,0 +1,60 @@
+<app-navigation></app-navigation>
+<div class="section-container">
+  <div class="section-box">
+    <h2>Match History</h2>
+    @if (games) {
+    <table class="section-table">
+      <tr>
+        <th>Game Id</th>
+        <th>Date</th>
+        <th>Player 1</th>
+        <th>Player 2</th>
+        <th>Score Player 1</th>
+        <th>Score Player 2</th>
+        <th>Winner</th>
+      </tr>
+      @for (game of games; track game) {
+      <tr>
+        <td>{{ game.id }}</td>
+        <td>{{ game.createdAt | date : "dd-MM-yy / HH:mm" }}</td>
+        <td>
+          <a [routerLink]="['/profile', game.player1.id]">{{
+            game.player1.userName.length < 3
+              ? game.player1.intraName
+              : game.player1.userName
+          }}</a>
+        </td>
+        <td>
+          <a [routerLink]="['/profile', game.player2.id]">{{
+            game.player2.userName.length < 3
+              ? game.player2.intraName
+              : game.player2.userName
+          }}</a>
+        </td>
+        <td>{{ game.scoreP1 }}</td>
+        <td>{{ game.scoreP2 }}</td>
+        <td>
+          {{
+            game.winner.userName.length < 3
+              ? game.winner.intraName
+              : game.winner.userName
+          }}
+        </td>
+      </tr>
+      } @empty {
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      }
+
+      <!-- @empty {
+      <td colspan="7">N/A</td>
+      } -->
+    </table>
+    }
+  </div>
+</div>

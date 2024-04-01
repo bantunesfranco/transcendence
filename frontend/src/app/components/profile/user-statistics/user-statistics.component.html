@@ -1,0 +1,28 @@
+<h2>Statistics</h2>
+<table class="section-table">
+  <tr>
+    <th>Wins</th>
+    <th>Losses</th>
+    <th>Total Score</th>
+    <th>Total Games</th>
+    <th>W/L Ratio</th>
+    <th>Average Score</th>
+  </tr>
+  <tr>
+    @if (stats) {
+    <td>{{ stats.nbWin }}</td>
+    <td>{{ stats.nbLoss }}</td>
+    <td>{{ stats.totalScore }}</td>
+    <td>{{ stats.totalGames }}</td>
+    <td>{{ stats.ratio.toFixed(1) }}</td>
+    <td>{{ stats.averageScore.toFixed(1) }}</td>
+    } @else {
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    }
+  </tr>
+</table>

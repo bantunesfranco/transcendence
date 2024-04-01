@@ -1,0 +1,78 @@
+<app-navigation></app-navigation>
+
+<form [formGroup]="chatForm" (ngSubmit)="createChat($event)">
+  <div class="section-box">
+    <h2>Create a new chat</h2>
+    <div class="chat-options">
+      <mat-form-field>
+        <mat-label>Select type</mat-label>
+        <mat-select placeholder="Chat Type" [(value)]="selectedItem">
+          <mat-option value="0">Public</mat-option>
+          <mat-option value="1">Private</mat-option>
+          <mat-option value="2">Password protected</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          type="password"
+          [formControl]="passwordFormControl"
+          placeholder="Pass123"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Select members</mat-label>
+        <mat-select
+          multiple
+          placeholder="Select members"
+          (selectionChange)="onSelectFriend($event)"
+        >
+          @for (friend of friends; track friend) {
+          @if (!currentUser.blockList.includes(friend.id)) {
+          <mat-option [value]="friend">
+            {{ friend.userName === "" ? friend.intraName : friend.userName }}
+          </mat-option>
+          }}
+        </mat-select>
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        class="create-chat-button"
+        color="primary"
+        type="submit"
+      >
+        Create
+      </button>
+    </div>
+
+    <h3>Added members</h3>
+    <mat-card>
+      <mat-card-content>
+        <mat-list>
+          @for (friend of selectedFriends; track friend; let idx = $index) {
+          <mat-list-item>
+            <div class="header-container">
+              <span>
+                {{
+                  friend.userName === "" ? friend.intraName : friend.userName
+                }}
+              </span>
+              <mat-slide-toggle
+                style="margin-left: auto"
+                labelPosition="before"
+                (change)="toggleChange(friend.id, $event)"
+              >
+                Admin
+              </mat-slide-toggle>
+            </div>
+          </mat-list-item>
+          }
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</form>

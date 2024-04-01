@@ -1,0 +1,166 @@
+<app-navigation></app-navigation>
+
+<div class="section-container">
+  <!-- Chatlist Column -->
+  <div class="chatlist-column">
+    <div class="chatlist-header">
+      <h2>Chat</h2>
+      <button
+        mat-raised-button
+        class="create-chat-button"
+        [routerLink]="['/chat/new']"
+      >
+        Create chat
+      </button>
+    </div>
+
+    <h3>My chats</h3>
+    <mat-nav-list class="chatlist">
+      @for (chat of chats; track chat) {
+      <mat-list-item (click)="openChat(chat)">
+        <!-- <span>Chat #{{ chat.id }}</span> -->
+        @for (member of chat.members; track member) {
+        <img [src]="member.avatar" class="avatar" alt="Avatar" />
+        <!-- <span>{{ member }}</span> -->
+        }
+      </mat-list-item>
+      } @empty { No private chats. }
+      <mat-divider></mat-divider>
+      <!-- ADD public chats here -->
+      <h3>Public chats</h3>
+      @for (chat of publicChats; track chat) {
+      <mat-list-item (click)="openChat(chat)">
+        <!-- <span>Chat #{{ chat.id }}</span> -->
+        @for (member of chat.members; track member) {
+        <img [src]="member.avatar" class="avatar" alt="Avatar" />
+        <!-- <span>{{ member }}</span> -->
+        }
+      </mat-list-item>
+      } @empty { No public chats }
+    </mat-nav-list>
+  </div>
+
+  <!-- Chat Column -->
+  <div class="chat-column">
+    @if (selectedChat) {
+    <div class="chat-container">
+      <div class="button-panel">
+        <!-- Admin Controls -->
+        @if (selectedChat.adminList.includes(currentUser.id) &&
+        selectedChat.type !== 'private') {
+        <div class="admin-controls">
+          <mat-form-field class="select-user-field">
+            <mat-select placeholder="Select user" [(value)]="targetUser">
+              @for (member of selectedChat.members; track member) {
+              <mat-option [value]="member">
+                {{
+                  member.userName === "" ? member.intraName : member.userName
+                }} </mat-option
+              >} @empty {
+              <span>No members.</span>
+              }
+            </mat-select>
+          </mat-form-field>
+          <button
+            mat-raised-button
+            color="warn"
+            (click)="targetUser && kickOrBanUser(targetUser.intraName, 'ban')"
+          >
+            Ban
+          </button>
+          <button
+            mat-raised-button
+            color="accent"
+            (click)="targetUser && kickOrBanUser(targetUser.intraName, 'kick')"
+          >
+            Kick
+          </button>
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="targetUser && muteUser(targetUser.intraName)"
+          >
+            Mute
+          </button>
+        </div>
+        }
+
+        <!-- Chat Header -->
+        <div class="chat-header">
+          <h3>
+            Chatting with @for (member of selectedChat.members; track member) {
+            {{ member.userName === "" ? member.intraName : member.userName }}
+            <!-- <img [src]="member.avatar" class="avatar" alt="Avatar" /> -->
+            <!-- <span>{{ member }}</span> -->
+            }
+          </h3>
+          <div class="button-container">
+            <button mat-raised-button color="primary" (click)="sendInvite()">
+              Send Invite
+            </button>
+            <button mat-raised-button color="warn" (click)="leaveChat()">
+              Leave chat
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chat Body -->
+      <div class="chat-body">
+        <!-- Messages -->
+        @for (msg of messages; track msg) {
+        @if(!currentUser.blockList.includes(msg.sender.id)) {
+        <div class="message">
+          <div class="message-header">
+            <img
+              [src]="msg.sender.avatar"
+              [routerLink]="['/profile', msg.sender.id]"
+              class="avatar"
+              alt="Avatar"
+            />
+            <div class="sender-info">
+              <span class="sender-name">{{
+                msg.sender.userName === ""
+                  ? msg.sender.intraName
+                  : msg.sender.userName
+              }}</span>
+              <span class="sent-date">{{ msg.createdAt | date }}</span>
+            </div>
+          </div>
+          @if (msg.isLink) {
+          <button
+            mat-raised-button
+            color="primary"
+            [routerLink]="[msg.content]"
+          >
+            Join Game
+          </button>
+          } @else {
+          <div class="message-content">{{ msg.content }}</div>
+          }
+        </div>
+        }}
+      </div>
+
+      <!-- Text Input and Send Button -->
+      <div class="message-input">
+        <form #form="ngForm" (ngSubmit)="onSubmit()">
+          <input
+            ngModel
+            type="text"
+            name="message"
+            placeholder="Write a message..."
+            required
+            matInput
+            placeholder="Enter your message..."
+            #messageInput
+          />
+          <button type="submit">send</button>
+        </form>
+      </div>
+    </div>
+    } @else {
+    <div>Select a chat</div>
+    }
+  </div>
+</div>

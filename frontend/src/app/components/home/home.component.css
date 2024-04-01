@@ -1,0 +1,13 @@
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.mat-raised-button {
+	margin-right: 5px;
+}
+
+.profile-button {
+	margin-left: auto;
+}

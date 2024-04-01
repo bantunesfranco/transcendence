@@ -1,0 +1,4 @@
+fix buggy collisions
+stress test connecting/disconnecting/reconnecting
+no disconnect when using arrow back button in browser
+active player always left

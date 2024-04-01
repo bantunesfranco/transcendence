@@ -1,0 +1,12 @@
+<div class="upload-button-container" style="padding-left: 10px">
+  <button mat-raised-button color="primary" (click)="uploadAvatar()">
+    Upload Avatar
+  </button>
+  <input
+    type="file"
+    accept="image/png"
+    (change)="onFileSelected($event)"
+    style="display: none"
+    #fileInput
+  />
+</div>
